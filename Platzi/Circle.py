@@ -11,7 +11,8 @@ class Circle():
     def Area(self):
         Area = self.radius*math.pi**2
         return Area
-        
-n =  Circle(3,"Blanco")
-print("Area: "+str(n.Area()))
+r  = int(input ("Ingrese el radio: "))
+color  = str(input ("Ingrese el color: "))
+n =  Circle(r, color)
+print("Area: "+str( n.Area()))
 print("Perimetro: "+str(n.Perimetro()))

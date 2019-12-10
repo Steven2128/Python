@@ -4,15 +4,19 @@ class Circle():
         self.radius = radius
         self.color = color
 
+    @property
     def Perimetro(self):
-        Parametro = self.radius*math.pi*2
-        return Parametro
-
+        Perimetro = self.radius*math.pi*2
+        return Perimetro
+        
+    @property
     def Area(self):
         Area = self.radius*math.pi**2
         return Area
+
 r  = int(input ("Ingrese el radio: "))
 color  = str(input ("Ingrese el color: "))
 n =  Circle(r, color)
-print("Area: "+str( n.Area()))
-print("Perimetro: "+str(n.Perimetro()))
+print("Color: "+n.color)
+print("Area: "+str(n.Area))
+print("Perimetro: "+str(n.Perimetro))

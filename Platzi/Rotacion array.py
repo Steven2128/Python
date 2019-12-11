@@ -10,4 +10,4 @@ d = int(nd[1])
 a = list(map(int, input().rstrip().split()))
 r = d % n
 
-print(*rotar(a,r))
+print(rotar(a,r))

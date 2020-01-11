@@ -58,3 +58,8 @@ def signup(request):
 
     return render(request, 'users/signup.html')
 
+
+def update_profile(request):
+    """Update a user profile"""
+    return render(request, 'users/update_profile.html')
+

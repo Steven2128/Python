@@ -14,7 +14,9 @@
 
             <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}            
-
+                {% for message in messages %}
+                    <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
                 <div class="media">
                     {% if profile.picture %}
                         <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
@@ -27,6 +29,9 @@
                         <p class="ml-4"><input type="file" name="picture"></p>
                     </div>
                 </div>
+                {% for error in form.picture.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endfor %}
                 <hr><br>
 
                 <div class="form-group">

@@ -1,5 +1,9 @@
+"""Posts models."""
+
+# Django
 from django.db import models
 from django.contrib.auth.models import User
+
 
 class Post(models.Model):
     """Post model."""
@@ -12,7 +16,6 @@ class Post(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-
 
     def __str__(self):
         """Return title and username."""

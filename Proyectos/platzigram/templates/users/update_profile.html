@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head_content %}
-<title>@{{ user.username }} | Update profile</title>
+<title>@{{ request.user.username }} | Update profile</title>
 {% endblock %}
 
 {% block container %}

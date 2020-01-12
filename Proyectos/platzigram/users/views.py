@@ -15,8 +15,11 @@ from users.models import Profile
 # Forms
 from users.forms import ProfileForm
 
+<<<<<<< HEAD
 #Messages
 from django.contrib import messages
+=======
+>>>>>>> 570e22022dcf8be67007c8385d0d597ba237a910
 
 @login_required
 def update_profile(request):
@@ -34,7 +37,10 @@ def update_profile(request):
             profile.picture = data['picture']
             profile.save()
 
+<<<<<<< HEAD
             messages.success(request, 'Profile updated correctly')
+=======
+>>>>>>> 570e22022dcf8be67007c8385d0d597ba237a910
             return redirect('update_profile')
 
     else:

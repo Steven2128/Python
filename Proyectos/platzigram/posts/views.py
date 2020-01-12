@@ -15,9 +15,14 @@ from posts.models import Post
 def list_posts(request):
     """List existing posts."""
     posts = Post.objects.all().order_by('-created')
+<<<<<<< HEAD
     profile = request.user.profile
     
     return render(request, 'posts/feed.html', {'posts': posts, 'profile': profile})
+=======
+
+    return render(request, 'posts/feed.html', {'posts': posts})
+>>>>>>> 570e22022dcf8be67007c8385d0d597ba237a910
 
 
 @login_required

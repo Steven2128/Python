@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head_content %}
-<title>@{{ user.username }} | Update profile</title>
+<title>@{{ request.user.username }} | Update profile</title>
 {% endblock %}
 
 {% block container %}
@@ -14,9 +14,13 @@
             
             <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+<<<<<<< HEAD
                 {% if messages %}
                     <div class="alert alert-success">Profile updated correctly</div>
                 {% endif %}
+=======
+
+>>>>>>> 570e22022dcf8be67007c8385d0d597ba237a910
                 <div class="media">
                     
                     <img 
@@ -33,6 +37,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 {% if not profile.picture %}
                     {% for error in form.picture.errors %}
                     <div class="alert alert-danger">
@@ -40,6 +45,14 @@
                     </div>
                     {% endfor %}
                 {% endif %}
+=======
+                {% for error in form.picture.errors %}
+                <div class="alert alert-danger">
+                    <b>Picture: </b>{{ error }}
+                </div>
+                {% endfor %}
+
+>>>>>>> 570e22022dcf8be67007c8385d0d597ba237a910
                 <hr><br>
 
                 {# Website field #}

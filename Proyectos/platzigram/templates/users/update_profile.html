@@ -11,29 +11,38 @@
 
     <div class="row justify-content-md-center">
         <div class="col-6 p-4" id="profile-box">
-
+            
             <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}            
-                {% for message in messages %}
-                    <p class="alert alert-success">{{ message }}</p>
-                {% endfor %}
+                {% csrf_token %}
+                {% if messages %}
+                    <div class="alert alert-success">Profile updated correctly</div>
+                {% endif %}
                 <div class="media">
+                    
+                    <img 
+                    src="
                     {% if profile.picture %}
-                        <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
+                        {{ profile.picture.url }}
                     {% else%}
-                        <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="50" />
+                        {% static 'img/default-profile.png' %}
                     {% endif %}
-
+                    " class="rounded-circle" height="50" width="45px"/>             
                     <div class="media-body">
                         <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
                         <p class="ml-4"><input type="file" name="picture"></p>
                     </div>
                 </div>
-                {% for error in form.picture.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
+
+                {% if not profile.picture %}
+                    {% for error in form.picture.errors %}
+                    <div class="alert alert-danger">
+                        <b>Picture: </b>{{ error }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
                 <hr><br>
 
+                {# Website field #}
                 <div class="form-group">
                     <label>Website</label>
                     <input
@@ -46,25 +55,26 @@
                     <div class="invalid-feedback">
                         {% for error in form.website.errors %}
                             {{ error }}
-                        {% endfor %}
+                        {% endfor%}
                     </div>
                 </div>
 
+                {# Biography field #}
                 <div class="form-group">
                     <label>Biography</label>
-                    <textarea 
+                    <textarea
                         class="form-control {% if form.biography.errors %}is-invalid{% endif %}"
-                        type="text"
                         name="biography"
-                        >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
+                    >{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
+
                     <div class="invalid-feedback">
                         {% for error in form.biography.errors %}
                             {{ error }}
-                        {% endfor %}
+                        {% endfor%}
                     </div>
                 </div>
-                
 
+                {# Phone number field #}
                 <div class="form-group">
                     <label>Phone number</label>
                     <input
@@ -77,7 +87,7 @@
                     <div class="invalid-feedback">
                         {% for error in form.phone_number.errors %}
                             {{ error }}
-                        {% endfor %}
+                        {% endfor%}
                     </div>
                 </div>
 

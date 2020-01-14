@@ -15,9 +15,8 @@ from posts.models import Post
 def list_posts(request):
     """List existing posts."""
     posts = Post.objects.all().order_by('-created')
-    profile = request.user.profile
-    
-    return render(request, 'posts/feed.html', {'posts': posts, 'profile': profile})
+
+    return render(request, 'posts/feed.html', {'posts': posts})
 
 
 @login_required
@@ -27,7 +26,7 @@ def create_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('feed')
+            return redirect('posts:feed')
 
     else:
         form = PostForm()

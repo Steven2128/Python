@@ -11,35 +11,29 @@
 
     <div class="row justify-content-md-center">
         <div class="col-6 p-4" id="profile-box">
-            
-            <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
+
+            <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% if messages %}
-                    <div class="alert alert-success">Profile updated correctly</div>
-                {% endif %}
+
                 <div class="media">
-                    
-                    <img 
-                    src="
                     {% if profile.picture %}
-                        {{ profile.picture.url }}
+                        <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
                     {% else%}
-                        {% static 'img/default-profile.png' %}
+                        <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="50" />
                     {% endif %}
-                    " class="rounded-circle" height="50" width="45px"/>             
+
                     <div class="media-body">
                         <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
                         <p class="ml-4"><input type="file" name="picture"></p>
                     </div>
                 </div>
 
-                {% if not profile.picture %}
-                    {% for error in form.picture.errors %}
-                    <div class="alert alert-danger">
-                        <b>Picture: </b>{{ error }}
-                    </div>
-                    {% endfor %}
-                {% endif %}
+                {% for error in form.picture.errors %}
+                <div class="alert alert-danger">
+                    <b>Picture: </b>{{ error }}
+                </div>
+                {% endfor %}
+
                 <hr><br>
 
                 {# Website field #}

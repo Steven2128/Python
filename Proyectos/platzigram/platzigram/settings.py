@@ -25,7 +25,7 @@ SECRET_KEY = 'g%#mue@@9+%3+q!e7b0%eh9dg2=kbxs-#35(h5!em)fz&2!=2$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['52.91.163.14']
 
 
 # Application definition
@@ -83,9 +83,13 @@ WSGI_APPLICATION = 'platzigram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'platzigram',
+            'USER': 'root',
+            'PASSWORD': '123456789',
+            'HOST': '52.91.163.14',
+            'PORT': '3306',
+        }
 }
 
 
@@ -125,6 +129,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
